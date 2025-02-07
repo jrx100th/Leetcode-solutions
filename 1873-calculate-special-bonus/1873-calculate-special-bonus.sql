@@ -6,3 +6,4 @@ CASE
     ELSE 0
 END AS bonus
 FROM Employees
+ORDER BY employee_id;
