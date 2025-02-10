@@ -1,12 +1,3 @@
--- Write your PostgreSQL query statement below
-SELECT 
-user_id,
-name,
-mail
+SELECT *
 FROM Users
-WHERE 
-RIGHT(mail,13) = '@leetcode.com'
-AND
-mail NOT LIKE '%#%'
-AND
-LEFT(mail,1) NOT IN ('.','#','_','-')
+WHERE mail ~ '^[a-zA-Z][a-zA-Z0-9\_\.\-]*@leetcode\.com$';
