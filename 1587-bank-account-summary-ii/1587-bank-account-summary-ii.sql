@@ -4,7 +4,7 @@ name AS "NAME",
 SUM(amount) AS "BALANCE"
 FROM
 Users
-INNER JOIN
+LEFT JOIN
 Transactions
 ON 
 Users.account = Transactions.account
