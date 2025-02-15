@@ -8,10 +8,10 @@ WITH min_dates AS (
 )
 
 SELECT 
-    ((SUM(CASE 
+    ROUND(((SUM(CASE 
             WHEN min_order_date = min_pref_date THEN 1.0
             ELSE 0
         END)*1.0/
-        COUNT(DISTINCT(customer_id))*1.0)*100) AS immediate_percentage
+        COUNT(DISTINCT(customer_id))*1.0)*100),2) AS immediate_percentage
 FROM min_dates
 ;
