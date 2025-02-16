@@ -1,31 +1,5 @@
 -- Write your PostgreSQL query statement below
-/*
-SELECT 
-(
-    SELECT user_id FROM Users
-    WHERE Users.user_id = Orders.buyer_id
-) AS buyer_id,
-(
-    SELECT join_date FROM Users
-    WHERE Users.user_id = Orders.buyer_id
-) AS join_date,
-COUNT(order_id) AS orders_in_2019
-FROM
-Orders
-WHERE TO_CHAR(order_date,'yyyy') = '2019'
-GROUP BY buyer_id
-*/
-
-SELECT
-buyer_id,
-join_date,
-SUM(
-    CASE WHEN TO_CHAR(order_date,'yyyy') = '2019' THEN 1
-    ELSE 0
-    END
-) AS orders_in_2019
-FROM Users
-LEFT JOIN
-Orders ON 
-Users.user_id = Orders.buyer_id
-GROUP BY buyer_id, join_date
+SELECT user_id as buyer_id, MAX(join_date) as join_date,
+COUNT(CASE WHEN o.order_date BETWEEN '2019-01-01' AND '2019-12-31' THEN 1 ELSE NULL END) AS orders_in_2019 
+FROM Users u LEFT JOIN Orders o ON u.user_id = o.buyer_id
+GROUP BY user_id
