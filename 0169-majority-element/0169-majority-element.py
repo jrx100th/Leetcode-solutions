@@ -12,7 +12,7 @@ class Solution(object):
             if count > (n/2):
                 return num"""
 
-        candidate = None
+        """candidate = None
         nums.sort()
         count = 0
         for num in nums:
@@ -23,4 +23,19 @@ class Solution(object):
             else:
                 count -= 1
         return candidate
-        
+        """
+
+        count = {}
+        cands = []
+        n = len(nums)/2
+        for num in nums:
+            if num in count:
+                count[num]+= 1
+            if num not in count:
+                count[num] = 1
+
+        for num, count in count.items():
+            if count > n:
+                cands.append(num)
+
+        return cands[0]
