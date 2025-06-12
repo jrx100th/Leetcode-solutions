@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
+        """
         current = head
         nums = set(nums)
        
@@ -18,3 +19,22 @@ class Solution:
             current = current.next
 
         return res.next
+"""     # this is a good but not the optimal approach
+
+        nums = set(nums)
+
+        dummy = ListNode(None)
+        
+        dummy.next = head
+
+        current = head
+        prev = dummy
+
+        while current:
+            if current.val in nums:
+                prev.next = current.next
+            else:
+                prev = current
+            current = current.next
+
+        return dummy.next
