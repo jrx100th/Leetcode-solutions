@@ -23,12 +23,12 @@ class Solution:
 
         nums = set(nums)
 
-        dummy = ListNode(None)
+        dummy = ListNode()
         
         dummy.next = head
 
-        current = head
-        prev = dummy
+        current, prev = head, dummy
+
 
         while current:
             if current.val in nums:
