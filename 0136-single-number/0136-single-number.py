@@ -1,8 +1,5 @@
-class Solution(object):
-    def singleNumber(self, nums):
-        from collections import Counter
-        count = Counter(nums)
-        for num, count in count.items():
-            if count == 1:
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        for num in nums:
+            if nums.count(num) == 1:
                 return num
-        
