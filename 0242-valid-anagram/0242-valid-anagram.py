@@ -1,21 +1,21 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        
-        mapper = {}
-        for letter in s:
-            if letter not in mapper:
-                mapper[letter] = 0
-            mapper[letter] += 1
+        if len(s) != len(t):
+            return False
 
-        for letter in t:
-            if letter not in mapper:
+        count = {}
+
+        # Count characters in s
+        for char in s:
+            count[char] = count.get(char, 0) + 1
+
+        # Subtract counts using t
+        for char in t:
+            if char not in count:
                 return False
-            if letter in mapper:
-                mapper[letter] -= 1
-
-        mapper =  list(mapper.values())
-
-        for num in mapper:
-            if num != 0:
+            count[char] -= 1
+            if count[char] < 0:
                 return False
+
+        # All counts should be zero
         return True
