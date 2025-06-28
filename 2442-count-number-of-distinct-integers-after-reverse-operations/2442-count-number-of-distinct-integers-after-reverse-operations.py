@@ -1,15 +1,12 @@
 class Solution:
     def countDistinctIntegers(self, nums: List[int]) -> int:
-        mapper = {}
+        seen = set()
 
         for num in nums:
-            mapper[num] = 1
+            seen.add(num)
 
         for num in nums:
             num = int(str(num)[::-1])
-            if num not in mapper:
-                mapper[num] = 1
-            else:
-                mapper[num]+=1
+            seen.add(num)
 
-        return len(mapper)
+        return len(seen)
