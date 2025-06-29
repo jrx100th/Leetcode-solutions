@@ -1,13 +1,16 @@
 class Solution:
     def divideArray(self, nums: List[int]) -> bool:
         
-        mapper = {}
-        for num in nums:
-            if num not in mapper:
-                mapper[num] = 0
-            mapper[num] += 1
+        seen = set()
+        pairs = 0
 
         for num in nums:
-            if mapper[num]%2 != 0 :
-                return False
-        return True
+            if num not in seen:
+                seen.add(num)
+            else:
+                seen.remove(num)
+                pairs += 1
+        if len(seen) != 0:
+            return False
+        else:
+            return pairs*2 == len(nums)
